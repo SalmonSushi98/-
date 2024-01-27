@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>길고양이 키우기</title>
+    <script>
+      window.onload = function() {
+        var startBtn = document.getElementsByClassName('introMenu')[0];
+        var startMes = document.getElementById('startMessage');
+        var helpBtn = document.getElementsByClassName('introMenu')[1];
+        var helpMes = document.getElementById('helpMessage')
+        var modal = document.getElementById('modal');
+        var closeBtn = document.getElementsByClassName('close')[0];
+
+        helpBtn.addEventListener('click', function(e) {
+          modal.style.display = 'block';
+          helpMes.style.display = 'block';
+          startMes.style.display = 'none';
+        })
+
+        closeBtn.addEventListener('click', function(e) {
+          modal.style.display = 'none';
+        })
+
+        startBtn.addEventListener('click', function(e) {
+          modal.style.display = 'block';
+          helpMes.style.display = 'none';
+          startMes.style.display = 'block';
+        })
+      };
+    </script>
+    <style>
+      #container{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 600px;
+        height: 640px;
+      }
+      #introWindow{
+        border: 2px solid black;
+        background-image: url(intro\ cat.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-color: rgb(245, 245, 245);
+        margin: auto;
+        width: 600px;
+        height: 640px;
+        text-align: center;
+        font-family: 굴림;
+      }
+      #gameTitle{
+        width: 500px;
+        margin: 110px auto 120px;
+        text-align: right;
+        font-size: 60px;
+      }
+      #introMenuBoard{
+        margin: 0 auto 8px;
+        padding: 10px 0;
+        width: 520px;
+        height: 180px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-content: space-around;
+        border-radius: 3%;
+        background-color: gray;
+      }
+      .introMenu{
+        width: 460px;
+        height: 80px;
+        font-family: 굴림;
+        font-size: 40px;
+      }
+      #copyright{
+        display: none;
+        font-size: 20px;
+      }
+      #modal{
+        display: none;
+        position: relative;
+        top: -642px;
+        width: 602px;
+        height: 580px;
+        padding: 60px 0 0;
+        z-index: 1;
+        background-color: rgb(0, 0, 0, 0.3);
+      }
+      #helpPopup{
+        margin: auto;
+        position: relative;
+        width: 500px;
+        height: 500px;
+        background-color: white;
+      }
+      #helpContent{
+        position: relative;
+        top: 30px;
+        margin: auto;
+        padding: 0 20px 0;
+        width: 400px;
+        height: 440px;
+        background-color: rgb(46, 70, 102);
+        color: white;
+      }
+      .close{
+        float: right;
+        font-size: 60px;
+        font-weight: bold;
+      }
+      .close:hover{
+        color: yellow;
+        text-decoration: none;
+        cursor: pointer;
+      }
+      #helpMessage, #startMessage{
+        width: 400px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        font-size: 40px;
+        font-family: 굴림;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <div id="introWindow">
+        <div id="gameTitle">
+          길고양이로<br>살아남기
+        </div>
+        <div id="introMenuBoard">
+          <Button class="introMenu">시작하기</Button>
+          <Button class="introMenu">도움말</Button>
+        </div>
+        <span id="copyright">Copyright 2024. Cat Surviving at Town. All rights reserved.</span>
+      </div>
+      <div id="modal">
+        <div id="helpPopup">
+          <div id="helpContent">
+            <span class="close">&times;</span>
+            <div id="helpMessage">
+              길고양이가 되어<br>도심 속에서
+              <br>생존하는 게임입니다.
+            </div>
+            <div id="startMessage">
+              아직 안만들었어 임마!
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
