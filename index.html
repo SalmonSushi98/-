@@ -2,61 +2,200 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1">
-    <title>길고양이 키우기</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>길고양이로 살아남기</title>
     <script>
       window.onload = function() {
         var startBtn = document.getElementsByClassName('introMenu')[0];
         var startMes = document.getElementById('startMessage');
         var helpBtn = document.getElementsByClassName('introMenu')[1];
-        var helpMes = document.getElementById('helpMessage')
+        var helpMes = document.getElementById('helpMessage');
+        var introWindow = document.getElementById('introWindow');
+        var startWindow = document.getElementById('startWindow');
         var modal = document.getElementById('modal');
+        var helpPopup = document.getElementById('helpPopup');
         var closeBtn = document.getElementsByClassName('close')[0];
+        var whiteModal = document.getElementById('whiteModal');
 
         helpBtn.addEventListener('click', function(e) {
-          modal.style.display = 'block';
-          helpMes.style.display = 'block';
-          startMes.style.display = 'none';
+          modal.style.zIndex = '1';
         })
 
         closeBtn.addEventListener('click', function(e) {
-          modal.style.display = 'none';
+          modal.style.zIndex = '-1';
         })
+       startBtn.addEventListener('click', function(e) {
+        whiteModal.style.zIndex = '1';
+        whiteModal.style.opacity = '1';
+        whiteModal.style.transition = '1.5s';
+        setTimeout(function(e) {
+          whiteModal.style.zIndex = '-1';
+          whiteModal.style.opacity = '0';
+          introWindow.style.display = 'none';
+          startWindow.style.display = 'block';
+        }, 1500)
+       })
 
-        startBtn.addEventListener('click', function(e) {
-          modal.style.display = 'block';
-          helpMes.style.display = 'none';
-          startMes.style.display = 'block';
-        })
+       var startMain = document.getElementById('startMain');
+       var startDia = document.getElementById('startDialogue');
+       var nextBtn = document.getElementById('next');
+
+       nextBtn.addEventListener('click', function(e) {
+        if (startDia.innerHTML == "............<br>.......") {
+          startDia.innerHTML = ".......나..<br>....어..나..";
+        } else if (startDia.innerHTML == ".......나..<br>....어..나..") {
+          startDia.innerHTML = "일어나!!";
+          startMain.style.backgroundImage = 'url(cat001.png)';
+          startMain.style.backgroundSize = 'contain';
+        } else if (startDia.innerHTML == "일어나!!") {
+          startDia.style.color = 'blue';
+          startDia.style.fontWeight = 'bold';
+          startDia.innerHTML = "'뭐야.. 웬 고양이..?'";
+        } else if (startDia.innerHTML == "'뭐야.. 웬 고양이..?'") {
+          startDia.style.color = 'black';
+          startDia.style.fontWeight = 'normal';
+          startDia.innerHTML = "어이 네놈<br>처음 보는 얼굴인데<br>이름이 뭐냐?";
+        } else if (startDia.innerHTML == "어이 네놈<br>처음 보는 얼굴인데<br>이름이 뭐냐?") {
+          startDia.style.color = 'blue';
+          startDia.style.fontWeight = 'bold';
+          startDia.innerHTML = "'내 이름...?'";
+          document.getElementById('name').style.display = 'block';
+        } else if (startDia.innerHTML == "'내 이름...?'") {
+          var name = document.getElementsByName('myName')[0].value;
+          if (name == "") {
+            alert('이름을 입력해주세요!');
+          } else {
+            startDia.style.color = 'black';
+            startDia.style.fontWeight = 'normal';
+            startDia.innerHTML = name + "..?<br>인간스러운 이름이군";
+            document.getElementById('name').style.display = 'none';
+            window.localStorage.setItem("name", name);
+          }
+        } else if (startDia.innerHTML == localStorage.getItem("name") + "..?<br>인간스러운 이름이군") {
+          startDia.style.color = 'blue';
+          startDia.style.fontWeight = 'bold';
+          startDia.innerHTML = "'난 인간인데..'<br>'이상한 고양이...'";
+        } else if (startDia.innerHTML == "'난 인간인데..'<br>'이상한 고양이...'") {
+          startDia.innerHTML = "'잠깐.. 내가 어떻게<br>고양이가 하는 말을<br>알아듣는거지?'"
+        } else if (startDia.innerHTML == "'잠깐.. 내가 어떻게<br>고양이가 하는 말을<br>알아듣는거지?'") {
+          startDia.innerHTML = "이봐 넌 대체 뭐야?";
+        } else if (startDia.innerHTML == "이봐 넌 대체 뭐야?") {
+          startDia.style.color = 'black';
+          startDia.style.fontWeight = 'normal';
+          startDia.innerHTML = "나 말인가?<br>나는 검은 발톱이다.";
+        } else if (startDia.innerHTML == "나 말인가?<br>나는 검은 발톱이다.") {
+          startDia.style.color = 'blue';
+          startDia.style.fontWeight = 'bold';
+          startDia.innerHTML = ".......";
+        } else if (startDia.innerHTML == ".......") {
+          startDia.innerHTML = "아니 그...<br>검은 발톱씨?";
+        } else if (startDia.innerHTML == "아니 그...<br>검은 발톱씨?") {
+          startDia.innerHTML = "우리가 어떻게<br>대화할 수 있는지<br>모르겠지만";
+        } else if (startDia.innerHTML == "우리가 어떻게<br>대화할 수 있는지<br>모르겠지만") {
+          startDia.innerHTML = "여긴 도대체 어디야?";
+        } else if (startDia.innerHTML == "여긴 도대체 어디야?") {
+          startDia.style.color = 'black';
+          startDia.style.fontWeight = 'normal';
+          startDia.innerHTML = "이곳은 중앙광장이다.";
+        } else if (startDia.innerHTML == "이곳은 중앙광장이다.") {
+          startDia.style.color = 'blue';
+          startDia.style.fontWeight = 'bold';
+          startDia.innerHTML = "'중앙광장은 또<br>어디에 있는 곳이야..'";
+        } else if (startDia.innerHTML == "'중앙광장은 또<br>어디에 있는 곳이야..'") {
+          startDia.innerHTML = "'잠깐.. 설마 여기<br>고려대학교 중앙광장??'";
+        } else if (startDia.innerHTML == "'잠깐.. 설마 여기<br>고려대학교 중앙광장??'") {
+          startDia.style.color = 'black';
+          startDia.style.fontWeight = 'normal';
+          startDia.innerHTML = "이봐 조심해!<br>인간들이 다가온다.";
+        } else if (startDia.innerHTML == "이봐 조심해!<br>인간들이 다가온다.") {
+          startMain.style.backgroundImage = 'url(people001.png)';
+          startMain.style.backgroundSize = 'contain';
+          startDia.innerHTML = "어머, 못보던 고양이네?<br>너는 어디서 왔니?";
+        } else if (startDia.innerHTML == "어머, 못보던 고양이네?<br>너는 어디서 왔니?") {
+          startDia.style.color = 'blue';
+          startDia.style.fontWeight = 'bold';
+          startDia.innerHTML = "......?<br>아니 누구세요..?<br>사람한테 고양이라니..";
+        } else if (startDia.innerHTML == "......?<br>아니 누구세요..?<br>사람한테 고양이라니..") {
+          startDia.style.color = 'black';
+          startDia.style.fontWeight = 'normal';
+          startDia.innerHTML = "야 애 되게 귀엽다~<br>안 피하고 야옹거리네~";
+        }
+       })
       };
     </script>
     <style>
+      body, Button {
+        font-family: 굴림;
+      }
       #container{
+        border: 2px solid black;
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 80vw; max-width: 380px; min-width: 260px;
-        height: 75vh; max-height: 420px;
+        width: 80vw;
+        height: 90vw;
       }
       #introWindow{
-        border: 2px solid black;
         background-image: url(intro\ cat.png);
         background-size: contain;
         background-repeat: no-repeat;
         background-color: rgb(245, 245, 245);
-        margin: auto;
-        width: 80vw; max-width: 380px; min-width: 260px;
-        height: 75vh; max-height: 420px;
-        text-align: center;
-        font-family: 굴림;
-      }
-      #gameTitle{
         width: 100%;
-        position: relative;
-        top: 15%;
-        text-align: right;
-        font-size: 3rem;
+        height: 100%;
+        text-align: center;
+      }
+      #startWindow, #gameWindow{
+        background-color: white;
+        width: 100%;
+        height: 100%;
+        display: none;
+      }
+      #startMain {
+        background-size: contain;
+        background-repeat: no-repeat;
+        margin: 0 auto;
+        width: 80%;
+        height: 85%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+      }
+      #startSelect {
+        width: 100%;
+        height: 15%;
+        text-align: center;
+      }
+      #name {
+        border: 1px solid black;
+        width: 45%;
+        display: none;
+        position: absolute;
+        top: 50%; left: 50%;
+        transform: translate(-50%, 0);
+        font-size: 1.2rem;
+      }
+      #next {
+        font-size: 1.2rem;
+      }
+      @media only screen and (max-width: 720px) {
+        #container, #introWindow{
+          max-width: 330px;
+          max-height: 350px;
+        }
+      }
+      @media only screen and (min-width: 720px) {
+        #container, #introWindow{
+          width: 355px;
+          height: 380px;
+        }
+      }
+      @media only screen and (min-width: 768px) and (orientation: portrait) {
+        #container, #introWindow{
+          width: 495px;
+          height: 525px;
+        }
       }
       #introMenuBoard{
         margin: 0 auto 8px;
@@ -64,7 +203,7 @@
         width: 90%;
         height: 40%;
         position: relative;
-        top: 20%;
+        top: 50%;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-around;
@@ -75,23 +214,27 @@
       .introMenu{
         width: 90%;
         height: 40%;
-        font-family: 굴림;
         font-size: 2.5rem;
       }
       #copyright{
         display: none;
         font-size: 20px;
       }
-      #modal{
+      #modal, #whiteModal{
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        display: none;
+        z-index: -1;
         width: 100%;
         height: 100%;
-        z-index: 1;
+      }
+      #modal {
         background-color: rgb(0, 0, 0, 0.3);
+      }
+      #whiteModal {
+        background-color: white;
+        opacity: 0;
       }
       #helpPopup{
         position: absolute;
@@ -138,9 +281,6 @@
   <body>
     <div id="container">
       <div id="introWindow">
-        <div id="gameTitle">
-          길고양이로<br>살아남기
-        </div>
         <div id="introMenuBoard">
           <Button class="introMenu">시작하기</Button>
           <Button class="introMenu">도움말</Button>
@@ -152,14 +292,24 @@
           <div id="helpContent">
             <span class="close">&times;</span>
             <div id="helpMessage">
-              길고양이가 되어<br>도심 속에서
-              <br>생존하는 게임입니다.
-            </div>
-            <div id="startMessage">
-              아직 안만들었어 임마!
+              길고양이가 되어<br>도심 속에서<br>생존하는 게임입니다.
             </div>
           </div>
         </div>
+      </div>
+      <div id="whiteModal"></div>
+      <div id="startWindow">
+        <div id="startMain">
+          <span id="startDialogue">............<br>.......</span>
+        </div>
+        <div id="startSelect">
+          <Button id="next">다음</Button>
+        </div>
+        <input id="name" type="text" name="myName">
+      </div>
+      <div id="gameWindow">
+        <div id="mainArea"></div>
+        <div id="selectArea"></div>
       </div>
     </div>
   </body>
