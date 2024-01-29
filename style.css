@@ -1,0 +1,178 @@
+body, Button {
+  font-family: 굴림;
+  font-size: 1.2rem;
+}
+#container{
+  border: 2px solid black;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80vw;
+  height: 90vw;
+}
+#introWindow{
+  background-image: url(images/intro\ cat.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: rgb(245, 245, 245);
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+#startWindow, #gameWindow{
+  background-color: white;
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+#startMain {
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin: 0 auto;
+  width: 80%;
+  height: 85%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+#startSelect {
+  width: 100%;
+  height: 15%;
+  text-align: center;
+}
+#mainArea {
+  border: 1px solid black;
+  width: 100%;
+  height: 85%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#gameMenu {
+  width: 32%;
+  height: 100%;
+}
+#info {
+  width: 60%;
+}
+#gameMenu {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.gameOption {
+  width: 100%;
+  height: 20%;
+}
+#selectArea {
+  width: 100%;
+  height: 15%;
+}
+#name {
+  border: 1px solid black;
+  width: 45%;
+  display: none;
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, 0);
+  font-size: 1.2rem;
+}
+@media only screen and (max-width: 720px) {
+  #container, #introWindow{
+    max-width: 330px;
+    max-height: 350px;
+  }
+}
+@media only screen and (min-width: 720px) {
+  #container, #introWindow{
+    width: 355px;
+    height: 380px;
+  }
+}
+@media only screen and (min-width: 768px) and (orientation: portrait) {
+  #container, #introWindow{
+    width: 495px;
+    height: 525px;
+  }
+}
+#introMenuBoard{
+  margin: 0 auto 8px;
+  padding: 10px 0;
+  width: 90%;
+  height: 40%;
+  position: relative;
+  top: 50%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-content: space-around;
+  border-radius: 3%;
+  background-color: gray;
+}
+.introMenu{
+  width: 90%;
+  height: 40%;
+  font-size: 2.5rem;
+}
+#copyright{
+  display: none;
+  font-size: 20px;
+}
+#modal, #whiteModal{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+}
+#modal {
+  background-color: rgb(0, 0, 0, 0.3);
+}
+#whiteModal {
+  background-color: white;
+  opacity: 0;
+}
+#helpPopup{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+  background-color: white;
+}
+#helpContent{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 90%;
+  padding: 0 1rem 0;
+  background-color: rgb(46, 70, 102);
+  color: white;
+}
+.close{
+  float: right;
+  font-size: 3rem;
+  font-weight: bold;
+}
+.close:hover{
+  color: yellow;
+  text-decoration: none;
+  cursor: pointer;
+}
+#helpMessage, #startMessage{
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 1.2rem;
+  font-family: 굴림;
+}
