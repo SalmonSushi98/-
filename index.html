@@ -38,23 +38,37 @@
       </div>
       <div id="gameWindow">
         <div id="mainArea">
-          <div id="info">
+          <div id="game">
+            <div id="story">
+              <div id="storyDialogue">무엇을 할까?</div>
+            </div>
+            <div id="storyOpt">
+              <div id="optBox1">
+                <div class="sOpt">1. 가만히 있는다.</div>
+                <div class="sOpt">2. 돌아다닌다.</div>
+                <div class="sOpt"></div>
+              </div>
+              <div id="optBox2">
+                <Button id="storyNext">다음</Button>
+              </div>
+            </div>
           </div>
+          <div id="empty"></div>
           <div id="gameMenu">
-            <button class="gameOption">이동하기</button><br>
-            <button class="gameOption">도구사용</button><br>
-            <button class="gameOption">휴식하기</button><br>
-            <button class="gameOption">메인으로</button>
+            <button class="gameOpt">위치이동</button><br>
+            <button class="gameOpt">도구사용</button><br>
+            <button class="gameOpt">휴식하기</button><br>
+            <button class="gameOpt">메인으로</button>
           </div>
         </div>
-        <div id="selectArea">
+        <div id="infoArea">
           <div id="profile"></div>
           <table>
             <tr>
               <th id="th1">이름:</th>
               <th id="userName"></th>
               <th id="th3">체력:</th>
-              <th id="HP">100/100</th>
+              <th id="th4"><span id="HP">100</span>/100</th>
             </tr>
             <tr>
               <th>위치:</th>

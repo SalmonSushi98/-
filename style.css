@@ -47,26 +47,71 @@ body, Button {
   width: 100%;
   height: 85%;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
 }
 #gameMenu {
   width: 32%;
   height: 100%;
 }
-#info {
+#empty {
+  border-right: 1px solid black;
+  width: 0%;
+  height: 100%;
+}
+#game {
   width: 60%;
+  height: 100%;
+  font-size: 0.9rem;
+}
+#story, #storyOpt {
+  width: 100%;
+}
+#story {
+  border-bottom: 1px solid black;
+  height: 70%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#storyDialogue {
+  width: 90%;
+}
+#storyOpt {
+  height: 30%;
+}
+#optBox1 {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-around;
+}
+.sOpt {
+  width: 100%;
+}
+#optBox2 {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  display: none;
+}
+#storyNext {
+  font-size: 0.9rem;
+  position: relative;
+  top: 40%;
 }
 #gameMenu {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
 }
-.gameOption {
+.gameOpt {
   width: 100%;
   height: 20%;
 }
-#selectArea {
+#infoArea {
   width: 100%;
   height: 15%;
   display: flex;
@@ -93,7 +138,7 @@ table {
 #userName {
   width: 43%;
 }
-#HP {
+#th4 {
   width: 25%;
 }
 #name {
