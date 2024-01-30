@@ -43,7 +43,7 @@ body, Button {
   text-align: center;
 }
 #mainArea {
-  border: 1px solid black;
+  border-bottom: 1px solid black;
   width: 100%;
   height: 85%;
   display: flex;
@@ -69,6 +69,32 @@ body, Button {
 #selectArea {
   width: 100%;
   height: 15%;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+}
+#profile {
+  background-image: url(images/cat003.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center, center;
+  width: 15%;
+  height: 100%;
+}
+table {
+  border-left: 1px solid black;
+  width: 82%;
+  height: 100%;
+  font-size: 0.9rem;
+}
+#th1, #th3 {
+  width: 16%;
+}
+#userName {
+  width: 43%;
+}
+#HP {
+  width: 25%;
 }
 #name {
   border: 1px solid black;

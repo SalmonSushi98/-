@@ -39,19 +39,31 @@
       <div id="gameWindow">
         <div id="mainArea">
           <div id="info">
-            이름: <span id="userName"></span><br>
-            위치: <span id="place">중앙광장</span><br>
-            체력: <span id="HP">100</span><br>
-            상태: <span id="condition">-</span>
           </div>
           <div id="gameMenu">
             <button class="gameOption">이동하기</button><br>
-            <button class="gameOption">사냥하기</button><br>
-            <button class="gameOption">채집하기</button><br>
+            <button class="gameOption">도구사용</button><br>
+            <button class="gameOption">휴식하기</button><br>
             <button class="gameOption">메인으로</button>
           </div>
         </div>
-        <div id="selectArea"></div>
+        <div id="selectArea">
+          <div id="profile"></div>
+          <table>
+            <tr>
+              <th id="th1">이름:</th>
+              <th id="userName"></th>
+              <th id="th3">체력:</th>
+              <th id="HP">100/100</th>
+            </tr>
+            <tr>
+              <th>위치:</th>
+              <th id="place">중앙광장</th>
+              <th>상태:</th>
+              <th id="condition">정상</th>
+            </tr>
+          </table>
+        </div>
       </div>
     </div>
   </body>
