@@ -1,4 +1,6 @@
 window.onload = function() {
+  localStorage.setItem("noteInfo", "XX월 XX일<br>반지와 학생증을 잃어버렸다. 어디에서 떨어트린 것인지...<br>XX월 XX일<br>자취방 열쇠가 안보인다... 집에 어떻게 들어가지..<br>XX월 XX일<br>기침하면서 안경을 떨어트렸는데 어디로 간 건지 모르겠다..<br>XX월 XX일<br>큰일이다. 아주 중요한 물건을 잃어버렸다.. 중앙광장지하에서 잃어버린 거 같은데 어디있지..");
+  
   const item1 = document.getElementsByClassName('th')[0];
 
   if (localStorage.getItem("note") == "get") {
@@ -10,12 +12,16 @@ window.onload = function() {
   const introWindow = document.getElementById('introWindow');
   const startWindow = document.getElementById('startWindow');
   const gameWindow = document.getElementById('gameWindow');
+  const game = document.querySelector("#game");
+  const location = document.querySelector("#location");
   const modal = document.getElementById('modal');
   const closeBtn = document.getElementsByClassName('close')[0];
+  const modalMes = document.querySelector('#modalMessage');
   const whiteModal = document.getElementById('whiteModal');
 
   helpBtn.addEventListener('click', function(e) {
     modal.style.zIndex = '1';
+    modalMes.innerHTML = "길고양이가 되어<br>도심 속에서<br>생존하는 게임입니다.";
   })
 
   closeBtn.addEventListener('click', function(e) {
@@ -167,9 +173,9 @@ window.onload = function() {
   const storyBtn = document.getElementById('storyNext');
   const optBox1 = document.getElementById('optBox1');
   const optBox2 = document.getElementById('optBox2');
-  const place = document.getElementById('place').innerHTML;
-  const HP = document.getElementById('HP').innerHTML;
-  const condition = document.getElementById('condition').innerHTML;
+  const place = document.querySelector('#place').innerHTML;
+  const HP = document.querySelector('#HP').innerHTML;
+  const condition = document.querySelector('#condition').innerHTML;
 
   function box1Close(element1, element2) {
     element1.style.display = 'none';
@@ -248,6 +254,7 @@ window.onload = function() {
 
   const itemBox = document.getElementById('itemBox');
   const itemInfo = document.getElementById('itemInfo');
+  const detailInfo = document.querySelector('#detailInfo');
 
   const moveBtn = document.getElementsByClassName('gameOpt')[0];
   const itemBtn = document.getElementsByClassName('gameOpt')[1];
@@ -255,18 +262,52 @@ window.onload = function() {
   const homeBtn = document.getElementsByClassName('gameOpt')[3];
 
   itemBtn.addEventListener('click', function(e) {
-    if (itemBox.style.display == "none") {
+    if (game.style.display == "none") {
+      location.style.display = "none";
+      game.style.display = "block";
       story.style.display = "none";
       storyOpt.style.display = "none";
       itemBox.style.display = "block";
       itemInfo.style.display = "flex";
-    } else if (itemBox.style.display == "block") {
-      story.style.display = 'flex';
-      storyOpt.style.display = "block";
-      itemBox.style.display = "none";
-      itemInfo.style.display = "none";
     } else {
-      alert('hi');
+      if (itemBox.style.display == "none") {
+        story.style.display = "none";
+        storyOpt.style.display = "none";
+        itemBox.style.display = "block";
+        itemInfo.style.display = "flex";
+      } else if (itemBox.style.display == "block") {
+        story.style.display = 'flex';
+        storyOpt.style.display = "block";
+        itemBox.style.display = "none";
+        itemInfo.style.display = "none";
+        detailInfo.innerHTML = "";
+      }
+    }
+  })
+
+  item1.addEventListener('click', function(e) {
+    detailInfo.innerHTML = localStorage.getItem("noteInfo");
+  })
+
+  moveBtn.addEventListener('click', function(e) {
+    if(location.style.display == "none") {
+      location.style.display = "flex";
+      game.style.display = "none";
+    } else if (location.style.display == "flex") {
+      location.style.display = "none";
+      game.style.display = "block";
+    }
+  })
+
+  restBtn.addEventListener('click', function(e) {
+    if (condition == "정상") {
+      if (HP == "100") {
+        modal.style.zIndex = '1';
+        modalMes.innerHTML = "이미 체력이 충분합니다.";
+      }
+    } else {
+      modal.style.zIndex = '1';
+      modalMes.innerHTML = "상태 이상은 휴식으로<br>회복할 수 없습니다.";
     }
   })
 
