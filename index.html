@@ -42,6 +42,25 @@
             <div id="story">
               <div id="storyDialogue">무엇을 할까?</div>
             </div>
+            <div id="itemBox" style="display: none">
+              <table>
+                <tr>
+                  <th class="th"></th>
+                  <th class="th"></th>
+                  <th class="th"></th>
+                </tr>
+                <tr>
+                  <th class="th"></th>
+                  <th class="th"></th>
+                  <th class="th"></th>
+                </tr>
+                <tr>
+                  <th class="th"></th>
+                  <th class="th"></th>
+                  <th class="th"></th>
+                </tr>
+              </table>
+            </div>
             <div id="storyOpt">
               <div id="optBox1">
                 <div class="sOpt">1. 가만히 있는다.</div>
@@ -52,11 +71,14 @@
                 <Button id="storyNext">다음</Button>
               </div>
             </div>
+            <div id="itemInfo">
+              <div id="detailInfo">아이템 설명</div>
+            </div>
           </div>
           <div id="empty"></div>
           <div id="gameMenu">
             <button class="gameOpt">위치이동</button><br>
-            <button class="gameOpt">도구사용</button><br>
+            <button class="gameOpt">도구함</button><br>
             <button class="gameOpt">휴식하기</button><br>
             <button class="gameOpt">메인으로</button>
           </div>
@@ -71,9 +93,9 @@
               <th id="th4"><span id="HP">100</span>/100</th>
             </tr>
             <tr>
-              <th>위치:</th>
+              <th >위치:</th>
               <th id="place">중앙광장</th>
-              <th>상태:</th>
+              <th >상태:</th>
               <th id="condition">정상</th>
             </tr>
           </table>

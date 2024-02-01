@@ -1,4 +1,10 @@
 window.onload = function() {
+  const item1 = document.getElementsByClassName('th')[0];
+
+  if (localStorage.getItem("note") == "get") {
+    item1.style.backgroundImage = "url(images/note.png)";
+  }
+  
   const startBtn = document.getElementsByClassName('introMenu')[0];
   const helpBtn = document.getElementsByClassName('introMenu')[1];
   const introWindow = document.getElementById('introWindow');
@@ -49,6 +55,7 @@ window.onload = function() {
 
   const startMain = document.getElementById('startMain');
   const startDia = document.getElementById('startDialogue');
+  const storyOpt = document.querySelector('#storyOpt');
   const nextBtn = document.getElementById('next');
 
   nextBtn.addEventListener('click', function(e) {
@@ -75,7 +82,7 @@ window.onload = function() {
       dia(startDia);
       startDia.innerHTML = name + "..?<br>인간스러운 이름이군";
       document.getElementById('name').style.display = 'none';
-      window.localStorage.setItem("name", name);
+      localStorage.setItem("name", name);
     }
   } else if (startDia.innerHTML == localStorage.getItem("name") + "..?<br>인간스러운 이름이군") {
     myDia(startDia);
@@ -152,6 +159,7 @@ window.onload = function() {
   }
   })
 
+  const story = document.getElementById('story');
   const storyDia = document.getElementById('storyDialogue');
   const opt1 = document.getElementsByClassName('sOpt')[0];
   const opt2 = document.getElementsByClassName('sOpt')[1];
@@ -185,9 +193,15 @@ window.onload = function() {
 
   opt2.addEventListener('click', function(e) {
     if (place == "중앙광장") {
-      if (storyDia.innerHTML == "무엇을 할까?") {
+      if (localStorage.getItem("note") !== "get") {
+        if (storyDia.innerHTML == "무엇을 할까?") {
+          myDia(storyDia);
+          storyDia.innerHTML = "'일단 주변을 좀 탐색해보자.'";
+          box1Close(optBox1, optBox2);
+        }
+      } else {
         myDia(storyDia);
-        storyDia.innerHTML = "'일단 주변을 좀 탐색해보자.'";
+        storyDia.innerHTML = "'여기서는 이제 더 알아낼 수 있는 게 없는 것 같다.'";
         box1Close(optBox1, optBox2);
       }
     }
@@ -195,7 +209,7 @@ window.onload = function() {
 
   storyBtn.addEventListener('click', function(e) {
     if (place == "중앙광장") {
-      if (storyDia.innerHTML == "'가만히 있으면 아무 것도 알 수 없어..'") {
+      if (storyDia.innerHTML == "'가만히 있으면 아무 것도 알 수 없어..'" || storyDia.innerHTML == "'여기서는 이제 더 알아낼 수 있는 게 없는 것 같다.'") {
         dia(storyDia);
         storyDia.innerHTML = "무엇을 할까?";
         box2Close(optBox1, optBox2);
@@ -220,11 +234,42 @@ window.onload = function() {
       } else if (storyDia.innerHTML == "XX월 XX일<br>큰일이다. 아주 중요한 물건을 잃어버렸다.. 중앙광장지하에서 잃어버린 거 같은데 어디있지..") {
         myDia(storyDia);
         storyDia.innerHTML = "'맞아 이 노트는 내가 잃어버린 물건을 적어두는 노트였어'";
+      } else if (storyDia.innerHTML == "'맞아 이 노트는 내가 잃어버린 물건을 적어두는 노트였어'") {
+        storyDia.innerHTML = "'일단 이 노트를 챙겨둬야겠다.'";
+      } else if (storyDia.innerHTML == "'일단 이 노트를 챙겨둬야겠다.'") {
+        localStorage.setItem("note", "get");
+        item1.style.backgroundImage = "url(images/note.png)";
+        dia(storyDia);
+        storyDia.innerHTML = "무엇을 할까?";
+        box2Close(optBox1, optBox2);
       }
     }
   })
 
+  const itemBox = document.getElementById('itemBox');
+  const itemInfo = document.getElementById('itemInfo');
+
+  const moveBtn = document.getElementsByClassName('gameOpt')[0];
+  const itemBtn = document.getElementsByClassName('gameOpt')[1];
+  const restBtn = document.getElementsByClassName('gameOpt')[2];
   const homeBtn = document.getElementsByClassName('gameOpt')[3];
+
+  itemBtn.addEventListener('click', function(e) {
+    if (itemBox.style.display == "none") {
+      story.style.display = "none";
+      storyOpt.style.display = "none";
+      itemBox.style.display = "block";
+      itemInfo.style.display = "flex";
+    } else if (itemBox.style.display == "block") {
+      story.style.display = 'flex';
+      storyOpt.style.display = "block";
+      itemBox.style.display = "none";
+      itemInfo.style.display = "none";
+    } else {
+      alert('hi');
+    }
+  })
+
   homeBtn.addEventListener('click', function(e) {
     screenChange(whiteModal, gameWindow, introWindow);
   })
