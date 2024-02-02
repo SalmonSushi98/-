@@ -238,7 +238,7 @@ Button:hover {
   flex-wrap: wrap;
   justify-content: space-around;
   align-content: space-around;
-  border-radius: 3%;
+  border-radius: 10px;
   background-color: gray;
 }
 .introMenu{
@@ -266,7 +266,7 @@ Button:hover {
   background-color: white;
   opacity: 0;
 }
-#helpPopup{
+#popup{
   position: absolute;
   top: 50%;
   left: 50%;
@@ -275,7 +275,7 @@ Button:hover {
   height: 80%;
   background-color: white;
 }
-#helpContent{
+#modalContent{
   position: absolute;
   top: 50%;
   left: 50%;

@@ -7,17 +7,17 @@ window.onload = function() {
     item1.style.backgroundImage = "url(images/note.png)";
   }
   
-  const startBtn = document.getElementsByClassName('introMenu')[0];
-  const helpBtn = document.getElementsByClassName('introMenu')[1];
-  const introWindow = document.getElementById('introWindow');
-  const startWindow = document.getElementById('startWindow');
-  const gameWindow = document.getElementById('gameWindow');
+  const startBtn = document.querySelectorAll('.introMenu')[0];
+  const helpBtn = document.querySelectorAll('.introMenu')[1];
+  const introWindow = document.querySelector('#introWindow');
+  const startWindow = document.querySelector('#startWindow');
+  const gameWindow = document.querySelector('#gameWindow');
   const game = document.querySelector("#game");
   const location = document.querySelector("#location");
-  const modal = document.getElementById('modal');
-  const closeBtn = document.getElementsByClassName('close')[0];
+  const modal = document.querySelector('#modal');
+  const closeBtn = document.querySelector('.close');
   const modalMes = document.querySelector('#modalMessage');
-  const whiteModal = document.getElementById('whiteModal');
+  const whiteModal = document.querySelector('#whiteModal');
 
   helpBtn.addEventListener('click', function(e) {
     modal.style.zIndex = '1';
@@ -59,10 +59,11 @@ window.onload = function() {
     element.style.fontWeight = 'normal';
   }
 
-  const startMain = document.getElementById('startMain');
-  const startDia = document.getElementById('startDialogue');
+  const startMain = document.querySelector('#startMain');
+  const startDia = document.querySelector('#startDialogue');
   const storyOpt = document.querySelector('#storyOpt');
-  const nextBtn = document.getElementById('next');
+  const nextBtn = document.querySelector('#next');
+  const gameMenu = document.querySelector('#gameMenu');
 
   nextBtn.addEventListener('click', function(e) {
   if (startDia.innerHTML == "............<br>.......") {
@@ -161,21 +162,21 @@ window.onload = function() {
     startDia.innerHTML = "'내가...<br>내가 진짜<br>고양이가 됐잖아...??'";
   } else if (startDia.innerHTML = "'내가...<br>내가 진짜<br>고양이가 됐잖아...??'") {
     screenChange(whiteModal, startWindow, gameWindow);
-    document.getElementById("userName").innerText = localStorage.getItem("name");
+    document.querySelector("#userName").innerText = localStorage.getItem("name");
   }
   })
 
-  const story = document.getElementById('story');
-  const storyDia = document.getElementById('storyDialogue');
-  const opt1 = document.getElementsByClassName('sOpt')[0];
-  const opt2 = document.getElementsByClassName('sOpt')[1];
-  const opt3 = document.getElementsByClassName('sOpt')[2];
-  const storyBtn = document.getElementById('storyNext');
-  const optBox1 = document.getElementById('optBox1');
-  const optBox2 = document.getElementById('optBox2');
-  const place = document.querySelector('#place').innerHTML;
-  const HP = document.querySelector('#HP').innerHTML;
-  const condition = document.querySelector('#condition').innerHTML;
+  const story = document.querySelector('#story');
+  const storyDia = document.querySelector('#storyDialogue');
+  const opt1 = document.querySelectorAll('.sOpt')[0];
+  const opt2 = document.querySelectorAll('.sOpt')[1];
+  const opt3 = document.querySelectorAll('.sOpt')[2];
+  const storyBtn = document.querySelector('#storyNext');
+  const optBox1 = document.querySelector('#optBox1');
+  const optBox2 = document.querySelector('#optBox2');
+  const place = document.querySelector('#place');
+  const HP = document.querySelector('#HP');
+  const condition = document.querySelector('#condition');
 
   function box1Close(element1, element2) {
     element1.style.display = 'none';
@@ -188,7 +189,7 @@ window.onload = function() {
   }
 
   opt1.addEventListener('click', function(e) {
-    if (place == "중앙광장") {
+    if (place.innerText == "중앙광장") {
       if (storyDia.innerHTML == "무엇을 할까?") {
         myDia(storyDia);
         storyDia.innerHTML = "'가만히 있으면 아무 것도 알 수 없어..'";
@@ -198,7 +199,7 @@ window.onload = function() {
   })
 
   opt2.addEventListener('click', function(e) {
-    if (place == "중앙광장") {
+    if (place.innerText == "중앙광장") {
       if (localStorage.getItem("note") !== "get") {
         if (storyDia.innerHTML == "무엇을 할까?") {
           myDia(storyDia);
@@ -214,7 +215,20 @@ window.onload = function() {
   })
 
   storyBtn.addEventListener('click', function(e) {
-    if (place == "중앙광장") {
+    if (storyDia.innerHTML == "체력을 전부 소진하였습니다.") {
+      storyDia.innerHTML = "중앙광장에서 다시 시작합니다.";
+    } else if (storyDia.innerHTML == "중앙광장에서 다시 시작합니다.") {
+      screenChange(whiteModal, introWindow, gameWindow);
+      setTimeout(function(e) {
+        HP.innerText = "100";
+        place.innerText = "중앙광장";
+        gameMenu.style.zIndex = "0";
+        storyDia.innerHTML = "무엇을 할까?";
+        box2Close(optBox1, optBox2);
+        opt1.innerText = "▶ 가만히 있는다.";
+        opt2.innerText = "▶ 돌아다닌다.";
+      }, 1500)
+    } else if (place.innerText == "중앙광장") {
       if (storyDia.innerHTML == "'가만히 있으면 아무 것도 알 수 없어..'" || storyDia.innerHTML == "'여기서는 이제 더 알아낼 수 있는 게 없는 것 같다.'") {
         dia(storyDia);
         storyDia.innerHTML = "무엇을 할까?";
@@ -252,14 +266,24 @@ window.onload = function() {
     }
   })
 
-  const itemBox = document.getElementById('itemBox');
-  const itemInfo = document.getElementById('itemInfo');
+  const itemBox = document.querySelector('#itemBox');
+  const itemInfo = document.querySelector('#itemInfo');
   const detailInfo = document.querySelector('#detailInfo');
 
   const moveBtn = document.getElementsByClassName('gameOpt')[0];
   const itemBtn = document.getElementsByClassName('gameOpt')[1];
   const restBtn = document.getElementsByClassName('gameOpt')[2];
   const homeBtn = document.getElementsByClassName('gameOpt')[3];
+
+  moveBtn.addEventListener('click', function(e) {
+    if(location.style.display == "none") {
+      location.style.display = "flex";
+      game.style.display = "none";
+    } else if (location.style.display == "flex") {
+      location.style.display = "none";
+      game.style.display = "block";
+    }
+  })
 
   itemBtn.addEventListener('click', function(e) {
     if (game.style.display == "none") {
@@ -286,32 +310,111 @@ window.onload = function() {
   })
 
   item1.addEventListener('click', function(e) {
-    detailInfo.innerHTML = localStorage.getItem("noteInfo");
-  })
-
-  moveBtn.addEventListener('click', function(e) {
-    if(location.style.display == "none") {
-      location.style.display = "flex";
-      game.style.display = "none";
-    } else if (location.style.display == "flex") {
-      location.style.display = "none";
-      game.style.display = "block";
+    if(localStorage.getItem("note") == "get") {
+      detailInfo.innerHTML = localStorage.getItem("noteInfo");
     }
   })
 
   restBtn.addEventListener('click', function(e) {
-    if (condition == "정상") {
-      if (HP == "100") {
+    if (condition.innerText == "정상") {
+      if (HP.innerText == "100") {
         modal.style.zIndex = '1';
         modalMes.innerHTML = "이미 체력이 충분합니다.";
       }
     } else {
       modal.style.zIndex = '1';
-      modalMes.innerHTML = "상태 이상은 휴식으로<br>회복할 수 없습니다.";
+      modalMes.innerHTML = "상태 이상일 때는<br>사용할 수 없습니다.";
     }
   })
 
   homeBtn.addEventListener('click', function(e) {
     screenChange(whiteModal, gameWindow, introWindow);
   })
+
+  const mainPlaza = document.querySelectorAll('.loc')[0];
+  const democracyPlaza = document.querySelectorAll('.loc')[1];
+  const politicalBackYard = document.querySelectorAll('.loc')[2];
+  const squirrelRoad = document.querySelectorAll('.loc')[3];
+  const lawBackYard = document.querySelectorAll('.loc')[4];
+  const mainBasement = document.querySelectorAll('.loc')[5];
+
+  mainPlaza.addEventListener('click', function(e) {
+    if (place.innerText == "중앙광장") {
+      modal.style.zIndex = '1';
+      modalMes.innerHTML = "이미 중앙광장입니다.";
+    } else {
+      story.style.display = 'flex';
+      storyOpt.style.display = "block";
+      itemBox.style.display = "none";
+      itemInfo.style.display = "none";
+      detailInfo.innerHTML = "";
+      if (parseInt(HP.innerText) < 15) {
+        place.innerText = "중앙광장";
+        location.style.display = "none";
+        game.style.display = "block";
+        gameOver(HP, gameMenu, dia, storyDia, item1);
+      } else {
+        place.innerText = "중앙광장";
+        localStorage.setItem("location", "중앙광장");
+        HP.innerText = parseInt(HP.innerText) - 15;
+        localStorage.setItem("HP", HP.innerText);
+        location.style.display = "none";
+        game.style.display = "block";
+        dia(storyDia);
+        storyDia.innerHTML = "무엇을 할까?";
+        box2Close(optBox1, optBox2);
+        opt1.innerText = "▶ 가만히 있는다.";
+        opt2.innerText = "▶ 돌아다닌다.";
+      }
+    }
+  })
+
+  democracyPlaza.addEventListener('click', function(e) {
+    if (place.innerText == "민주광장") {
+      modal.style.zIndex = '1';
+      modalMes.innerHTML = "이미 민주광장입니다.";
+    } else {
+      story.style.display = 'flex';
+      storyOpt.style.display = "block";
+      itemBox.style.display = "none";
+      itemInfo.style.display = "none";
+      detailInfo.innerHTML = "";
+      if (parseInt(HP.innerText) < 15) {
+        place.innerText = "민주광장";
+        location.style.display = "none";
+        game.style.display = "block";
+        gameOver(HP, gameMenu, dia, storyDia, item1);
+      } else {
+        place.innerText = "민주광장";
+        localStorage.setItem("location", "민주광장");
+        HP.innerText = parseInt(HP.innerText) - 15;
+        localStorage.setItem("HP", HP.innerText);
+        location.style.display = "none";
+        game.style.display = "block";
+        dia(storyDia);
+        storyDia.innerHTML = "무엇을 할까?";
+        box2Close(optBox1, optBox2);
+        opt1.innerText = "▶ 돌아다닌다.";
+        opt2.innerText = "▶ 쓰레기통을 뒤진다.";
+      }
+    }
+  })
+
+  if (localStorage.getItem("location") !== null) {
+    place.innerText = localStorage.getItem("location");
+  }
+
+  if (localStorage.getItem("HP") !== null) {
+    HP.innerText = localStorage.getItem("HP");
+  }
+  
+  function gameOver(HP, gameMenu, dia, storyDia, item1) {
+    HP.innerText = "0";
+    gameMenu.style.zIndex = "-1";
+    dia(storyDia);
+    storyDia.innerHTML = "체력을 전부 소진하였습니다.";
+    box1Close(optBox1, optBox2);
+    localStorage.setItem("location", "중앙광장");
+    localStorage.setItem("HP", "100");
+  }
 };
