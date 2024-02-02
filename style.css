@@ -92,6 +92,9 @@ Button:hover {
 }
 #story {
   border-bottom: 1px solid black;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
   height: 70%;
   text-align: center;
   display: flex;
